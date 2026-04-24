@@ -1,59 +1,74 @@
 type Cv {
-    id: ID!
-    name: String!
-    Age: Int
-    Job: String
-    skills: [Skill!]
-    User: User!
+  id: ID!
+  name: String!
+  Age: Int
+  Job: String
+  skills: [Skill!]
+  User: User!
 }
 
 type Skill {
-    id: ID!
-    Designation: String!
-    Cvs: [Cv!]
+  id: ID!
+  Designation: String!
+  Cvs: [Cv!]
 }
 
 enum role {
-    ADMIN
-    USER
+  ADMIN
+  USER
 }
 
 type User {
-    id: ID!
-    name: String!
-    email: String!
-    role: role!
-    Cvs: [Cv!]
+  id: ID!
+  name: String!
+  email: String!
+  role: role!
+  Cvs: [Cv!]
 }
 
-
 type Query {
-    Cvs: [Cv!]!
-    Skills: [Skill!]!
-    Users: [User!]!
-    Cv(id: ID!): Cv
-    Skill(id: ID!): Skill
-    User(id: ID!): User
+  Cvs: [Cv!]!
+  Skills: [Skill!]!
+  Users: [User!]!
+  Cv(id: ID!): Cv
+  Skill(id: ID!): Skill
+  User(id: ID!): User
 }
 
 type Mutation {
-    createCv(input: CvInput!): Cv!
-    updateCv(id: ID!, input: CvUpdateInput!): Cv!
-    deleteCv(id: ID!): Boolean!
+  createCv(input: CvInput!): Cv!
+  updateCv(id: ID!, input: CvUpdateInput!): Cv!
+  deleteCv(id: ID!): Boolean!
+}
+
+enum CvEventType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+type CvEvent {
+  mutation: CvEventType!
+  cvId: ID!
+  cv: Cv!
+}
+
+type Subscription {
+  cvChanged: CvEvent!
 }
 
 input CvInput {
-    name: String!
-    Age: Int
-    Job: String
-    UserId: ID!
-    skillsId: [ID!]
+  name: String!
+  Age: Int
+  Job: String
+  UserId: ID!
+  skillsId: [ID!]
 }
 
 input CvUpdateInput {
-    name: String
-    Age: Int
-    Job: String
-    UserId: ID
-    skillsId: [ID!]
+  name: String
+  Age: Int
+  Job: String
+  UserId: ID
+  skillsId: [ID!]
 }
