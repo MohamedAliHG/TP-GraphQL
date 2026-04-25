@@ -7,10 +7,11 @@ export type CvEventPayload = {
   cv: {
     id: string;
     name: string;
-    Age?: number;
-    Job?: string;
+    Age?: number | null;
+    Job?: string | null;
     UserId: string;
     skillsId?: string[];
+    skills?: Array<{ id: string; designation: string }>;
   };
   cvId: string;
 };

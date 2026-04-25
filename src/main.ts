@@ -1,7 +1,6 @@
 import{ createServer} from "node:http";
 import{ createYoga} from"graphql-yoga";
 import{ schema} from "./schema";
-import _db from "./_db";
 import { createContext, type AppContext } from "./context";
 
 

@@ -1,9 +1,9 @@
-import _db from "./_db";
+import { prisma } from "./prisma";
 
 export type AppContext = {
-  _db: typeof _db;
+  prisma: typeof prisma;
 };
 
 export function createContext(): AppContext {
-  return { _db };
+  return { prisma };
 }
