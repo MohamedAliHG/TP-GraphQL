@@ -4,7 +4,7 @@ type Cv {
   Age: Int
   Job: String
   skills: [Skill!]
-  User: User!
+  user: User!
 }
 
 type Skill {

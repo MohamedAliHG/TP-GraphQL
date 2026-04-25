@@ -1,16 +1,16 @@
 import type { AppContext } from "../context";
 
 export const Cv = {
-  Age: (parent: any) => parent.Age ?? parent.age ?? null,
-  Job: (parent: any) => parent.Job ?? parent.job ?? null,
-  User: async (parent: any, _args: unknown, { prisma }: AppContext) => {
-    if (parent.User) {
-      return parent.User;
-    }
+  Age: (parent: any) => parent.age ?? null,
+  Job: (parent: any) => parent.job ?? null,
+  user: async (parent: any, _args: unknown, { prisma }: AppContext) => {
     if (parent.user) {
       return parent.user;
     }
-    const userId = parent.UserId ?? parent.userId;
+    const userId = parent.userId;
+    if (!userId) {
+      return null;
+    }
     return prisma.user.findUnique({ where: { id: userId } });
   },
   skills: async (parent: any, _args: unknown, { prisma }: AppContext) => {
